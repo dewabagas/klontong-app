@@ -66,3 +66,7 @@ String capitalizeEachWord(String input) {
     return word[0].toUpperCase() + word.substring(1);
   }).join(' ');
 }
+
+String formatErrorMessage(String errorMessage) {
+  return errorMessage.replaceAll(RegExp(r'[\{\}]'), '');
+}
