@@ -15,7 +15,7 @@ class DeleteProductCubit extends Cubit<DeleteProductState> {
   DeleteProductCubit(this.iProductRepository)
       : super(const DeleteProductState.initial());
 
-  Future<void> storeProduct(String id) async {
+  Future<void> deleteProduct(String id) async {
     try {
       emit(const DeleteProductState.loadInProgress());
       final data = await iProductRepository.deleteProduct(id);
