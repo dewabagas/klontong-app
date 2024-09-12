@@ -10,8 +10,22 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:klontong_app/application/products/delete_product_cubit/delete_product_cubit.dart'
+    as _i398;
+import 'package:klontong_app/application/products/product_detail_cubit/product_detail_cubit.dart'
+    as _i1009;
+import 'package:klontong_app/application/products/products_bloc/products_bloc.dart'
+    as _i775;
+import 'package:klontong_app/application/products/store_product_cubit/store_product_cubit.dart'
+    as _i1019;
+import 'package:klontong_app/application/products/update_product_cubit/update_product_cubit.dart'
+    as _i173;
 import 'package:klontong_app/application/splash_cubit/splash_cubit.dart'
     as _i50;
+import 'package:klontong_app/domain/products/interfaces/i_product_repository.dart'
+    as _i443;
+import 'package:klontong_app/infrastructure/products/repositories/product_repository.dart'
+    as _i815;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -25,6 +39,17 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i50.SplashCubit>(() => _i50.SplashCubit());
+    gh.lazySingleton<_i443.IProductRepository>(() => _i815.ProductRepository());
+    gh.factory<_i775.ProductsBloc>(
+        () => _i775.ProductsBloc(gh<_i443.IProductRepository>()));
+    gh.factory<_i1019.StoreProductCubit>(
+        () => _i1019.StoreProductCubit(gh<_i443.IProductRepository>()));
+    gh.factory<_i398.DeleteProductCubit>(
+        () => _i398.DeleteProductCubit(gh<_i443.IProductRepository>()));
+    gh.factory<_i1009.ProductDetailCubit>(
+        () => _i1009.ProductDetailCubit(gh<_i443.IProductRepository>()));
+    gh.factory<_i173.UpdateProductCubit>(
+        () => _i173.UpdateProductCubit(gh<_i443.IProductRepository>()));
     return this;
   }
 }

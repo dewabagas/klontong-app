@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:klontong_app/presentation/core/constants/styles.dart';
 import 'package:klontong_app/presentation/core/styles/app_colors.dart';
 import 'package:klontong_app/presentation/core/utils/extension/double_extension.dart';
+import 'package:klontong_app/presentation/routes/app_route_paths.dart';
 import 'package:klontong_app/presentation/shared/buttons/button_primary.dart';
 import 'package:klontong_app/presentation/shared/cards/card_general.dart';
 import 'package:klontong_app/presentation/shared/inputs/input_primary.dart';
@@ -152,7 +156,10 @@ class _PageLoginState extends State<PageLogin> {
                             ButtonPrimary(
                               title: 'Masuk',
                               height: 50.h,
-                              onPressed: () {},
+                              onPressed: () {
+                                log('login');
+                                GoRouter.of(context).push(RoutePaths.dashboard);
+                              },
                             ),
                             10.0.height,
                             ButtonPrimary(
@@ -179,6 +186,7 @@ class _PageLoginState extends State<PageLogin> {
                         10.0.height,
                         Text('$appVersion ($buildNumber)',
                             style: TextStyles.regular10),
+                        10.0.height,
                       ],
                     ),
                   ),

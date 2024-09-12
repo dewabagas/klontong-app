@@ -8,4 +8,7 @@ class RoutePaths {
 
   // DASHBOARD
   static const String dashboard = '/dashboard';
+
+  static const String productAddition = '/product-addition';
+  static const String productDetail = '/product-detail';
 }

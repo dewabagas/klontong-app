@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:intl/intl.dart';
 
 String trimText(String name, int maxLength) {
@@ -69,4 +71,14 @@ String capitalizeEachWord(String input) {
 
 String formatErrorMessage(String errorMessage) {
   return errorMessage.replaceAll(RegExp(r'[\{\}]'), '');
+}
+
+String generateProductId() {
+  const String _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  Random _rnd = Random();
+  String randomString = String.fromCharCodes(Iterable.generate(
+      5, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+  String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
+  timestamp = timestamp.substring(timestamp.length - 3);
+  return randomString + timestamp;
 }
