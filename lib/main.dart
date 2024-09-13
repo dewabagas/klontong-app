@@ -8,8 +8,9 @@ import 'package:klontong_app/injection.dart';
 import 'package:klontong_app/locator.dart';
 import 'package:klontong_app/presentation/core/app.dart';
 import 'package:klontong_app/presentation/core/styles/app_colors.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -17,7 +18,15 @@ void main() async {
   await initializeDependencies();
   configLoading();
 
-  runApp(const App());
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://8df3f62beb21776113b05aca4a312136@o4505617706713088.ingest.us.sentry.io/4507944631271424';
+      options.tracesSampleRate = 1.0;
+      options.profilesSampleRate = 1.0;
+    },
+    appRunner: () => runApp(const App()),
+  );
 }
 
 void configLoading() {

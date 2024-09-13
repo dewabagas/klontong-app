@@ -17,6 +17,7 @@ import 'package:klontong_app/presentation/core/utils/common_utils.dart';
 import 'package:klontong_app/presentation/core/utils/extension/double_extension.dart';
 import 'package:klontong_app/presentation/routes/app_route_paths.dart';
 import 'package:klontong_app/presentation/shared/buttons/button_primary.dart';
+import 'package:klontong_app/presentation/shared/cards/card_error.dart';
 import 'package:klontong_app/presentation/shared/others/app_snack_bar.dart';
 import 'package:klontong_app/presentation/shared/others/custom_dialog_confirmation.dart';
 import 'package:klontong_app/presentation/shared/others/shimmer_primary.dart';
@@ -91,8 +92,10 @@ class _PageProductDetailState extends State<PageProductDetail> {
           builder: (context, state) {
             buildContext = context;
             return state.map(
-                initial: (value) => const SizedBox(),
-                loadInProgress: (value) => const SizedBox(),
+                initial: (value) =>
+                    const Center(child: CircularProgressIndicator()),
+                loadInProgress: (value) =>
+                    const Center(child: CircularProgressIndicator()),
                 loadSuccess: (value) {
                   return Stack(
                     children: [
@@ -103,15 +106,15 @@ class _PageProductDetailState extends State<PageProductDetail> {
                           leading: InkWell(
                               onTap: () => GoRouter.of(context).pop(),
                               child: const Icon(Icons.arrow_back,
-                                  color: AppColors.white)),
+                                  color: AppColors.black)),
                           backgroundColor: AppColors.white,
                           headerWidget: CachedNetworkImage(
                             imageUrl: '${value.response?.image}',
                             width: double.infinity,
-                            height:
-                                300.h, // Set the desired height for the image
+                            height: 300.h,
                             fit: BoxFit.cover,
-                            placeholder: (context, url) => ShimmerPrimary(),
+                            placeholder: (context, url) =>
+                                const ShimmerPrimary(),
                             errorWidget: (context, url, error) => Image.asset(
                               AppImages.imgNoImage,
                               width: 100.w,
@@ -252,7 +255,9 @@ class _PageProductDetailState extends State<PageProductDetail> {
                   );
                 },
                 loadFailure: (value) {
-                  return SizedBox();
+                  return CardError(
+                      errorTitle: value.failure?.message ??
+                          AppStrings.errorMessageGeneral);
                 });
           },
         ),

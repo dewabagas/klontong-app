@@ -20,6 +20,7 @@ import 'package:klontong_app/presentation/shared/others/empty_list.dart';
 import 'package:klontong_app/presentation/shared/others/shimmer_primary.dart';
 import 'package:klontong_app/presentation/shared/pages/error_page.dart';
 import 'package:klontong_app/presentation/shared/pages/page_list_wrapper.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class TabHome extends StatefulWidget {
   const TabHome({super.key});
@@ -62,7 +63,6 @@ class _TabHomeState extends State<TabHome> {
                 initial: (value) => shimmerLoader(),
                 loadInProgress: (value) => shimmerLoader(),
                 loadSuccess: (value) {
-                  log('loadSuccess ${value.filteredList}');
                   if (value.filteredList?.isEmpty == true) {
                     return const EmptyList();
                   } else {
@@ -163,7 +163,10 @@ class _TabHomeState extends State<TabHome> {
             textStyle: TextStyles.semibold10.copyWith(color: AppColors.white),
             width: 75.w,
             onPressed: () {
-              GoRouter.of(context).push(RoutePaths.productAddition);
+              GoRouter.of(context).push(
+                RoutePaths.productAddition,
+                extra: {'': ''},
+              );
             },
           ),
         ],

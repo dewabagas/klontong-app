@@ -77,7 +77,7 @@ class _PageLoginState extends State<PageLogin> {
               loadFailure: (value) {
                 EasyLoading.dismiss();
                 AppSnackBar.showError(context,
-                    value.failure?.message ?? AppStrings.errorMessageGeneral);
+                    value.failure.message ?? AppStrings.errorMessageGeneral);
               },
               orElse: () {});
         },
