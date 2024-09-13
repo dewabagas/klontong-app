@@ -11,8 +11,7 @@ abstract class Failure extends Equatable {
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure({int? errorCode, String? message})
-      : super(errorCode: errorCode, message: message);
+  const ServerFailure({super.errorCode, super.message});
 
   @override
   List<Object?> get props => [errorCode, message];
@@ -25,21 +24,21 @@ class NullFailure extends Failure {}
 class UnknownFailure extends Failure {}
 
 class PermissionFailure extends Failure {
-  const PermissionFailure({String? message}) : super(message: message);
+  const PermissionFailure({super.message});
 
   @override
   List<Object?> get props => [message];
 }
 
 class UnauthorizedFailure extends Failure {
-  const UnauthorizedFailure({String? message}) : super(message: message);
+  const UnauthorizedFailure({super.message});
 
   @override
   List<Object?> get props => [message];
 }
 
 class UnauthorizedPaymentFailure extends Failure {
-  const UnauthorizedPaymentFailure({String? message}) : super(message: message);
+  const UnauthorizedPaymentFailure({super.message});
 
   @override
   List<Object?> get props => [message];

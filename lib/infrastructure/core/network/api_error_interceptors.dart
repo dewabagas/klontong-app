@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:klontong_app/domain/core/constants/preference_constants.dart';
@@ -12,7 +10,6 @@ import 'package:klontong_app/presentation/routes/app_route_paths.dart';
 class AppInterceptors extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    log('AppInterceptors ${err}');
     switch (err.type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:
@@ -20,11 +17,8 @@ class AppInterceptors extends Interceptor {
         handler.next(DeadlineExceededException(err.requestOptions));
         return;
       case DioExceptionType.badResponse:
-        log('responseMessage ${err.response?.data}');
         switch (err.response?.statusCode) {
           case 401:
-            log('responseMessages data aja ${err.response?.toString().contains('Unauthenticated') == true}');
-            log('responseMessages mesage ${err.response?.data['message'].toString().contains('Unauthenticated') == true}');
             if (err.response?.data.toString().contains('Unauthenticated') ==
                 true) {
               clearUserCredentials('${err.response?.data['message']}');
@@ -63,7 +57,7 @@ class AppInterceptors extends Interceptor {
   }
 }
 
-class BadCertificateException extends DioError {
+class BadCertificateException extends DioException {
   BadCertificateException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -72,7 +66,7 @@ class BadCertificateException extends DioError {
   }
 }
 
-class UnknownErrorException extends DioError {
+class UnknownErrorException extends DioException {
   final String message;
   UnknownErrorException(RequestOptions r,
       {this.message = 'An unknown error occurred'})
@@ -87,12 +81,11 @@ class UnknownErrorException extends DioError {
 void clearUserCredentials(String message) async {
   Fluttertoast.showToast(msg: AppStrings.tokenExpired);
   await removeAllValuesPreference();
-  // await removeValuesPreference(key: PreferenceConstants.accessToken);
   await addBoolToPreference(key: PreferenceConstants.isLoggedIn, value: false);
   appRouter.router.pushReplacement(RoutePaths.dashboard);
 }
 
-class BadRequestException extends DioError {
+class BadRequestException extends DioException {
   BadRequestException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -101,7 +94,7 @@ class BadRequestException extends DioError {
   }
 }
 
-class InternalServerErrorException extends DioError {
+class InternalServerErrorException extends DioException {
   InternalServerErrorException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -110,7 +103,7 @@ class InternalServerErrorException extends DioError {
   }
 }
 
-class TokenExpiredException extends DioError {
+class TokenExpiredException extends DioException {
   TokenExpiredException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -119,7 +112,7 @@ class TokenExpiredException extends DioError {
   }
 }
 
-class NoInternetConnectionException extends DioError {
+class NoInternetConnectionException extends DioException {
   NoInternetConnectionException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -128,7 +121,7 @@ class NoInternetConnectionException extends DioError {
   }
 }
 
-class DeadlineExceededException extends DioError {
+class DeadlineExceededException extends DioException {
   DeadlineExceededException(RequestOptions r) : super(requestOptions: r);
 
   @override
