@@ -13,6 +13,7 @@ class CardProduct extends StatelessWidget {
   final String? name;
   final String? price;
   final String? stock;
+  final String? weight;
 
   final Function()? onTap;
 
@@ -23,6 +24,7 @@ class CardProduct extends StatelessWidget {
     this.name,
     this.price,
     this.stock,
+    this.weight,
   });
 
   @override
@@ -62,6 +64,9 @@ class CardProduct extends StatelessWidget {
                   4.0.height,
                   cardItem(
                       icon: Icons.discount, item: 'Stock', value: '$stock'),
+                  4.0.height,
+                  cardItem(
+                      icon: Icons.discount, item: 'Berat', value: '$weight'),
                 ],
               ),
             )

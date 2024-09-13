@@ -16,6 +16,7 @@ import 'package:klontong_app/presentation/routes/app_route_paths.dart';
 import 'package:klontong_app/presentation/shared/buttons/button_primary.dart';
 import 'package:klontong_app/presentation/shared/inputs/input_primary.dart';
 import 'package:klontong_app/presentation/shared/others/empty_list.dart';
+import 'package:klontong_app/presentation/shared/others/shimmer_primary.dart';
 import 'package:klontong_app/presentation/shared/pages/page_list_wrapper.dart';
 
 class TabHome extends StatefulWidget {
@@ -47,7 +48,7 @@ class _TabHomeState extends State<TabHome> {
       create: (context) =>
           getIt<ProductsBloc>()..add(const ProductsEvent.getProducts()),
       child: PageListWrapper(
-        appBarTitle: 'Klontonk',
+        appBarTitle: 'The Klontonk',
         hasBack: false,
         header: searchHeader(context),
         child: Container(
@@ -69,8 +70,8 @@ class _TabHomeState extends State<TabHome> {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 8.w,
-                        mainAxisSpacing: 8.h,
-                        childAspectRatio: 0.75,
+                        mainAxisSpacing: 16.h,
+                        childAspectRatio: 0.8,
                       ),
                       padding: EdgeInsets.symmetric(
                           horizontal: 16.w, vertical: 16.h),
@@ -84,6 +85,7 @@ class _TabHomeState extends State<TabHome> {
                           name: '${data.name}',
                           price: 'Rp. ${formatRupiah(data.price!.toInt())}',
                           stock: '${data.stock} ${data.unit}',
+                          weight: '${data.weight} Kg',
                         );
                       },
                     );
@@ -105,19 +107,19 @@ class _TabHomeState extends State<TabHome> {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8.w,
-        mainAxisSpacing: 8.h,
-        childAspectRatio: 0.75,
+        mainAxisSpacing: 16.h,
+        childAspectRatio: 0.8,
       ),
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {},
-          child: const CardProduct(
+        return const ShimmerPrimary(
+          child: CardProduct(
             imageUrl: AppImages.imgEmpty,
             name: 'Name',
             price: 'Rp. xxx.xxx',
             stock: '10 Pcs',
+            weight: '1 Kg',
           ),
         );
       },
@@ -140,8 +142,8 @@ class _TabHomeState extends State<TabHome> {
               prefixIcon:
                   Icon(Icons.search, size: 16.w, color: AppColors.lightText2),
               filled: true,
-              filledColor: AppColors.white,
-              borderColor: AppColors.white,
+              filledColor: AppColors.backgroundGrey,
+              borderColor: AppColors.backgroundGrey,
               borderRadius: BorderRadius.circular(8.r),
               controller: _searchController,
               onChanged: (value) {},

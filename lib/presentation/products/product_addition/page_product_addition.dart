@@ -77,7 +77,6 @@ class _PageProductAdditionState extends State<PageProductAddition> {
   void initState() {
     super.initState();
 
-    // Pre-fill form fields if editing a product
     if (isUpdateMode) {
       nameController.text = widget.product!.name ?? '';
       descriptionController.text = widget.product!.description ?? '';
@@ -89,11 +88,9 @@ class _PageProductAdditionState extends State<PageProductAddition> {
       priceController.text = widget.product!.price?.toString() ?? '';
       categoryController.text = widget.product!.categoryName ?? '';
       selectedCategory = widget.product!.categoryId;
-
-      // Load the existing image if available
-      if (widget.product!.image != null) {
-        _image = XFile(widget.product!.image!);
-      }
+      // if (widget.product!.image != null) {
+      //   _image = XFile(widget.product!.image!);
+      // }
     }
   }
 
@@ -391,9 +388,12 @@ class _PageProductAdditionState extends State<PageProductAddition> {
     String? imageUrl,
     VoidCallback onTap,
   ) {
+    log('image ${image != null}');
+    log('imageUrl ${imageUrl != null}');
+    log('imageUrl 2 ${imageUrl?.isNotEmpty}');
     return Stack(
       children: [
-        // Jika ada gambar dari file (_image) atau URL (widget.pen?.photo)
+        // Jika ada gambar dari file (_image) atau URL (widget.product?.image)
         image != null
             ? ClipRRect(
                 borderRadius: BorderRadius.circular(16.r),

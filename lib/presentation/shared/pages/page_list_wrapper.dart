@@ -24,11 +24,11 @@ class PageListWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundGrey,
+      backgroundColor: AppColors.white,
       appBar: appbarLabelAlternative(
           title: appBarTitle,
           hasBack: hasBack,
-          backgroundColor: AppColors.backgroundGrey,
+          backgroundColor: AppColors.white,
           borderColor: AppColors.strokeLight,
           titleColor: AppColors.strokeDark,
           onBackPressed: onBackPressed ?? () => GoRouter.of(context).pop()),
@@ -37,9 +37,9 @@ class PageListWrapper extends StatelessWidget {
         children: [
           header,
           Container(
-              color: AppColors.backgroundGrey,
+              color: AppColors.white,
               padding: padding ??
-                  EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                  EdgeInsets.symmetric(horizontal: 0.w, vertical: 16.h),
               child: Stack(children: [
                 Container(
                   height: screenHeight,

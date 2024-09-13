@@ -169,9 +169,9 @@ class _PageProductDetailState extends State<PageProductDetail> {
                                   10.0.width,
                                   Expanded(
                                       child: cardItem(
-                                          title: 'Kategori',
+                                          title: 'Supplier',
                                           subtitle:
-                                              '${value.response?.categoryName}')),
+                                              '${value.response?.supplierName}')),
                                 ],
                               ),
                             ),
@@ -195,6 +195,11 @@ class _PageProductDetailState extends State<PageProductDetail> {
                                       icon: Icons.numbers,
                                       title: 'SKU',
                                       subtitle: value.response?.sku),
+                                  6.0.height,
+                                  detailItem(
+                                      icon: Icons.fastfood_outlined,
+                                      title: 'Kategori',
+                                      subtitle: value.response?.categoryName),
                                 ],
                               ),
                             )
