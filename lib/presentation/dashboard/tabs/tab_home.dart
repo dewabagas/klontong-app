@@ -14,9 +14,11 @@ import 'package:klontong_app/presentation/core/utils/extension/double_extension.
 import 'package:klontong_app/presentation/dashboard/widgets/card_product.dart';
 import 'package:klontong_app/presentation/routes/app_route_paths.dart';
 import 'package:klontong_app/presentation/shared/buttons/button_primary.dart';
+import 'package:klontong_app/presentation/shared/cards/card_error.dart';
 import 'package:klontong_app/presentation/shared/inputs/input_primary.dart';
 import 'package:klontong_app/presentation/shared/others/empty_list.dart';
 import 'package:klontong_app/presentation/shared/others/shimmer_primary.dart';
+import 'package:klontong_app/presentation/shared/pages/error_page.dart';
 import 'package:klontong_app/presentation/shared/pages/page_list_wrapper.dart';
 
 class TabHome extends StatefulWidget {
@@ -92,7 +94,13 @@ class _TabHomeState extends State<TabHome> {
                   }
                 },
                 loadFailure: (value) {
-                  return SizedBox();
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: const CardError(
+                      errorTitle:
+                          'Error, kemungkinan API Server dari beeceptornya habis quota',
+                    ),
+                  );
                 });
           },
         )),

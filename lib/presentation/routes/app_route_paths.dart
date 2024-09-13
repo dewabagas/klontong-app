@@ -5,6 +5,7 @@ class RoutePaths {
 
   // AUTHS
   static const String login = '/login';
+  static const String register = '/register';
 
   // DASHBOARD
   static const String dashboard = '/dashboard';

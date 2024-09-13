@@ -5,6 +5,7 @@ import 'package:klontong_app/presentation/dashboard/page_dashboard.dart';
 import 'package:klontong_app/presentation/login/page_login.dart';
 import 'package:klontong_app/presentation/products/product_addition/page_product_addition.dart';
 import 'package:klontong_app/presentation/products/product_detail/page_product_detail.dart';
+import 'package:klontong_app/presentation/register/page_register.dart';
 import 'package:klontong_app/presentation/routes/app_route_paths.dart';
 
 class AppRouter {
@@ -18,6 +19,9 @@ class AppRouter {
         GoRoute(
             path: RoutePaths.login,
             builder: (context, state) => const PageLogin()),
+        GoRoute(
+            path: RoutePaths.register,
+            builder: (context, state) => const PageRegister()),
         GoRoute(
             path: RoutePaths.dashboard,
             builder: (context, state) => const PageDashboard()),

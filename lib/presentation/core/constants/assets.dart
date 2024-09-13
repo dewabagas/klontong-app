@@ -1,5 +1,7 @@
 class AppIcons {
   static const String icBrik = 'assets/icons/ic_brik.svg';
+  static const String icLogout = 'assets/icons/ic_logout.svg';
+  static const String icProfileWhite = 'assets/icons/ic_profile_white.svg';
 }
 
 class AppImages {
@@ -7,6 +9,11 @@ class AppImages {
       'https://st4.depositphotos.com/14953852/24787/v/380/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
   static const String imgBrikMix = 'assets/images/img_brik_mix.png';
   static const String imgNoImage = 'assets/images/img_no_image.png';
+}
+
+class Countries {
+  static const String icIndonesiaCircle =
+      'assets/icons/ic_indonesia_circle.svg';
 }
 
 class BottomBar {
