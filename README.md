@@ -12,6 +12,8 @@ Welcome to the Klontong App repository! This mobile application is built using F
 - State Management with BLoC and Cubit
 - Error Reporting with Sentry and Firebase Crashlytics
 
+## APK (if you want to install directly with your device)
+https://drive.google.com/file/d/1Uoh1kTQS8W6VbZfym11sMtd3_8dzHptX/view?usp=sharing
 
 ## Installation
 
